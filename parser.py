@@ -133,6 +133,6 @@ async def parse_message(user_input: str) -> dict[str, Any]:
             return UNKNOWN_RESULT
         return await _parse_with_gemini(user_input)
 
-    except Exception:
-        logger.exception("LLM parsing failed")
+    except Exception as e:
+        logger.error("LLM parsing failed: %s — %s", type(e).__name__, e)
         return UNKNOWN_RESULT
